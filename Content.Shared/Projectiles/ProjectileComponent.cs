@@ -104,4 +104,7 @@ public sealed partial class ProjectileComponent : Component
     /// </summary>
     [DataField]
     public float RandomBlindChance { get; set; } = 0;
+    
+    [DataField, AutoNetworkedField]
+    public bool DamagedEntity;
 }
