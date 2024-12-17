@@ -1,4 +1,3 @@
-using Content.Shared.Damage;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Map;
 using Content.Server.Power.Components; // Frontier
@@ -22,28 +21,17 @@ public sealed partial class GunSystem
          */
 
         // Automatic firing without stopping if the AutoShootGunComponent component is exist and enabled
-        var query = EntityQueryEnumerator<GunComponent>();
+        var query = EntityQueryEnumerator<AutoShootGunComponent, GunComponent>();
 
-        while (query.MoveNext(out var uid, out var gun))
+        while (query.MoveNext(out var uid, out var autoShoot, out var gun))
         {
+            if (!autoShoot.Enabled)
+                continue;
+
             if (gun.NextFire > Timing.CurTime)
                 continue;
 
-            if (TryComp(uid, out AutoShootGunComponent? autoShoot))
-            {
-                if (!autoShoot.Enabled)
-                    continue;
-
-                AttemptShoot(uid, gun);
-            }
-            else if (gun.BurstActivated)
-            {
-                var parent = TransformSystem.GetParentUid(uid);
-                if (HasComp<DamageableComponent>(parent))
-                    AttemptShoot(parent, uid, gun, gun.ShootCoordinates ?? new EntityCoordinates(uid, gun.DefaultDirection));
-                else
-                    AttemptShoot(uid, gun);
-            }
+            AttemptShoot(uid, gun);
         }
     }
 
