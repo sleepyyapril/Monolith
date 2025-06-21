@@ -11,6 +11,8 @@ using Content.Shared.Climbing.Systems;
 using Content.Shared.CombatMode;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -231,7 +233,8 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
             var session = _playerManager.GetSessionById(playerData.UserId);
 
             if (session.AttachedEntity is not { Valid: true } playerEnt
-                || HasComp<GhostComponent>(playerEnt))
+                || HasComp<GhostComponent>(playerEnt)
+                || TryComp<MobStateComponent>(playerEnt, out var state) && state.CurrentState != MobState.Alive) 
                 continue;
 
             var pos = _transform.GetWorldPosition(playerEnt);
