@@ -17,6 +17,7 @@
   - CadetPDA
   - ContractorWallet
   - ContractorCartridge
+#  - ContractorImplanter # Mono - TSF has a skill issue sometimes
   - ContractorEncryptionKey
   - ContractorFun
   - ContractorTrinkets
