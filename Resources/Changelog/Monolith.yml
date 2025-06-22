@@ -4641,3 +4641,26 @@ Entries:
   id: 554
   time: '2025-06-22T04:44:14.0000000+00:00'
   url: https://github.com/Monolith-Station/Monolith/pull/903
+- author: mikusssssss
+  changes:
+    - type: Add
+      message: >-
+        The normal, unrestricted hypospray has returned! Every civimed holds
+        only ONE, ever
+    - type: Add
+      message: >-
+        Commercial hyposprays have been added to all civi-meds for a raised
+        price tag
+    - type: Add
+      message: NTCS-103 has returned and can be obtained easily using civi-meds
+    - type: Tweak
+      message: >-
+        NTCS-102 has received a buff to speed and capacity, as it was a law
+        enforcement version
+    - type: Tweak
+      message: >-
+        NTCS-103 has been changed to be an experimental hypospray, with a raised
+        capacity and speed
+  id: 555
+  time: '2025-06-22T04:45:49.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/884
