@@ -43,8 +43,8 @@
             prob: 1
           - id: SalvageCanisterSpawner
             prob: 0.2
-          - id: SalvageMobSpawner
-            prob: 0.7
+          # - id: SalvageMobSpawner # Potential lag causing issue, also gives people super easy carp organs anyway. Exped, nerds.
+          #   prob: 0.7
     - type: IFF
       flags: HideLabel
       color: "#88b0d1"

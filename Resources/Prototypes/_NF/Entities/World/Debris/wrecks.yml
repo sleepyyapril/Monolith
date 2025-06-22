@@ -81,8 +81,8 @@
         - id: MedicalPodFilled # Medical bounties
           prob: 0.03
         # Mobs
-        - id: NFSalvageMobSpawner
-          prob: 0.03
+        # - id: NFSalvageMobSpawner # Potential lag causing issue, also gives people super easy carp organs anyway. Exped, nerds.
+        #   prob: 0.03
         # Room
         - id: NFWreckRoomMarker
           prob: 0.01
