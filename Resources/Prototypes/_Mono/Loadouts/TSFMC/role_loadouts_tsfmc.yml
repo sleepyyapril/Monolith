@@ -44,6 +44,7 @@
   - DeputyPDA
   - ContractorWallet
   - ContractorCartridge
+# - ContractorImplanter # Mono - TSF has a skill issue sometimes
   - ContractorEncryptionKey
   - ContractorFun
   - ContractorTrinkets
@@ -70,6 +71,7 @@
   - BrigmedicPDA
   - ContractorWallet
   - ContractorCartridge
+# - ContractorImplanter # Mono - TSF has a skill issue sometimes
   - ContractorEncryptionKey
   - ContractorFun
   - ContractorTrinkets
@@ -96,6 +98,7 @@
   - BailiffPDA
   - ContractorWallet
   - ContractorCartridge
+# - ContractorImplanter # Mono - TSF has a skill issue sometimes
   - ContractorEncryptionKey
   - ContractorFun
   - SeniorOfficerTrinkets
@@ -122,6 +125,7 @@
   - SeniorOfficerPDA
   - ContractorWallet
   - ContractorCartridge
+# - ContractorImplanter # Mono - TSF has a skill issue sometimes
   - ContractorEncryptionKey
   - ContractorFun
   - SeniorOfficerTrinkets
@@ -148,6 +152,7 @@
   - SheriffPDA
   - ContractorWallet
   - ContractorCartridge
+# - ContractorImplanter # Mono - TSF has a skill issue sometimes
   - ContractorFun
   - SeniorOfficerTrinkets
   - NfsdSpeciesSpecific
