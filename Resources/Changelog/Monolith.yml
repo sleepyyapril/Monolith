@@ -4664,3 +4664,49 @@ Entries:
   id: 555
   time: '2025-06-22T04:45:49.0000000+00:00'
   url: https://github.com/Monolith-Station/Monolith/pull/884
+- author: Redrover1760
+  changes:
+    - type: Tweak
+      message: Wreck deleting re-added to existence. This should probably help.
+  id: 556
+  time: '2025-06-22T08:16:20.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/908
+- author: BlueHNT
+  changes:
+    - type: Fix
+      message: Fixed USSP Serzhant not having access to Zastavnik
+  id: 557
+  time: '2025-06-22T09:30:21.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/911
+- author: Redrover1760
+  changes:
+    - type: Add
+      message: >-
+        Adds the Legionnaire-TOV, an experimental legionnaire refit that runs
+        Tovek missiles and marauders.
+    - type: Tweak
+      message: Adjusts the Legionnaire, more lateral mobility added
+    - type: Tweak
+      message: Windows, especially Plastitanium Windows, actually kinda tanky now
+    - type: Tweak
+      message: >-
+        Adjusts prices of Tarnyxs. This resulted in the Fracture being made
+        pricier.
+    - type: Tweak
+      message: Tarnyx emp duration reverted to 7.5s.
+    - type: Tweak
+      message: Tovek missiles adjusted to not be underwhelming.
+    - type: Tweak
+      message: >-
+        Corrected many ships under priced by appraise value. Also adjusted
+        myself. Vulture was way under priced. Also made Europa pricier.
+  id: 558
+  time: '2025-06-22T09:36:27.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/907
+- author: Redrover1760
+  changes:
+    - type: Fix
+      message: Lag fix round two
+  id: 559
+  time: '2025-06-22T17:19:17.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/915
