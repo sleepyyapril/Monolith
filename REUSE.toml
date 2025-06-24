@@ -3,9 +3,9 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later AND MIT
 
 version = 1
-SPDX-PackageName = "The Den"
-SPDX-PackageSupplier = "sleepyyapril <mousetvgaming@gmail.com>
-SPDX-PackageDownloadLocation = "https://www.denstation.net"
+SPDX-PackageName = "Monolith"
+SPDX-PackageSupplier = "Ark <some_email_here@gmail.com>
+SPDX-PackageDownloadLocation = "https://github.com/Monolith-Station/Monolith/"
 
 [[annotations]]
 path = ["Resources/Audio/**", "Resources/Textures/**"]
