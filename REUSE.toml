@@ -4,7 +4,7 @@
 
 version = 1
 SPDX-PackageName = "Monolith"
-SPDX-PackageSupplier = "Ark <some_email_here@gmail.com>
+SPDX-PackageSupplier = "Ark <circus_tricky406@simplelogin.com>
 SPDX-PackageDownloadLocation = "https://github.com/Monolith-Station/Monolith/"
 
 [[annotations]]
