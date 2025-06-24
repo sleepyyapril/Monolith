@@ -104,6 +104,8 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             return (false, null);
         }
 
+        var range = blackboard.GetValue<float>(RangeKey);
+
         if (_doNearbyPlayerCheck) // don't do the check at all if it's false, save More performance
         {
             var pos = _transform.GetWorldPosition(owner);
@@ -113,10 +115,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
                 return (false, null);
         }
 
-        var exists = blackboard.TryGetValue<float>(RangeKey, out var range, _entManager);
-
         if (xform.Coordinates.TryDistance(_entManager, targetCoordinates, out var distance)
-            && exists
             && distance <= range)
         {
             // In range
