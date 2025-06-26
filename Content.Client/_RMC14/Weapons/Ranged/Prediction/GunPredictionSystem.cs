@@ -1,4 +1,10 @@
-﻿using System.Linq;
+// SPDX-FileCopyrightText: 2024 Aiden
+// SPDX-FileCopyrightText: 2024 DrSmugleaf
+// SPDX-FileCopyrightText: 2025 Ark
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using System.Linq;
 using Content.Client.Projectiles;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
 using Content.Shared.Projectiles;

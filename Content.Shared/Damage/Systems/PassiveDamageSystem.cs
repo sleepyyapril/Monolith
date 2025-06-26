@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2023 LankLTE
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers
+// SPDX-FileCopyrightText: 2025 sleepyyapril
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs.Components;

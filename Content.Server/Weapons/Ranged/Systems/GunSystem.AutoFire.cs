@@ -1,3 +1,11 @@
+// SPDX-FileCopyrightText: 2024 Dvir
+// SPDX-FileCopyrightText: 2024 Ed
+// SPDX-FileCopyrightText: 2024 SlamBamActionman
+// SPDX-FileCopyrightText: 2024 Whatstone
+// SPDX-FileCopyrightText: 2025 sleepyyapril
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared.Damage;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Map;

@@ -1,4 +1,10 @@
-﻿using Robust.Shared.Map;
+// SPDX-FileCopyrightText: 2024 Aiden
+// SPDX-FileCopyrightText: 2024 DrSmugleaf
+// SPDX-FileCopyrightText: 2025 Ark
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._RMC14.Weapons.Ranged.Prediction;

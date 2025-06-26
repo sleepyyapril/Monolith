@@ -1,3 +1,32 @@
+// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto
+// SPDX-FileCopyrightText: 2021 metalgearsloth
+// SPDX-FileCopyrightText: 2022 wrexbe
+// SPDX-FileCopyrightText: 2023 AJCM-git
+// SPDX-FileCopyrightText: 2023 DrSmugleaf
+// SPDX-FileCopyrightText: 2023 KP
+// SPDX-FileCopyrightText: 2023 Kara
+// SPDX-FileCopyrightText: 2023 Leon Friedrich
+// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers
+// SPDX-FileCopyrightText: 2023 PixelTK
+// SPDX-FileCopyrightText: 2023 Slava0135
+// SPDX-FileCopyrightText: 2023 deltanedas
+// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
+// SPDX-FileCopyrightText: 2024 Aiden
+// SPDX-FileCopyrightText: 2024 Arendian
+// SPDX-FileCopyrightText: 2024 Cojoke
+// SPDX-FileCopyrightText: 2024 Dakamakat
+// SPDX-FileCopyrightText: 2024 Nemanja
+// SPDX-FileCopyrightText: 2024 nikthechampiongr
+// SPDX-FileCopyrightText: 2024 slarticodefast
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Ed
+// SPDX-FileCopyrightText: 2025 ScarKy0
+// SPDX-FileCopyrightText: 2025 SlamBamActionman
+// SPDX-FileCopyrightText: 2025 Whatstone
+// SPDX-FileCopyrightText: 2025 sleepyyapril
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Numerics;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
 using Content.Shared.Administration.Logs;

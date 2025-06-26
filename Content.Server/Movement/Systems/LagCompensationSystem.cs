@@ -1,3 +1,13 @@
+// SPDX-FileCopyrightText: 2022 metalgearsloth
+// SPDX-FileCopyrightText: 2023 Checkraze
+// SPDX-FileCopyrightText: 2023 Leon Friedrich
+// SPDX-FileCopyrightText: 2024 Aiden
+// SPDX-FileCopyrightText: 2024 DrSmugleaf
+// SPDX-FileCopyrightText: 2024 LordCarve
+// SPDX-FileCopyrightText: 2025 Ark
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Server.Movement.Components;
 using Robust.Server.Player;
 using Robust.Shared.Map;
