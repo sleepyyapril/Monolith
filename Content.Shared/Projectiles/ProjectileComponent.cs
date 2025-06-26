@@ -80,34 +80,4 @@ public sealed partial class ProjectileComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool DamagedEntity;
-
-    /// <summary>
-    ///     If true, the projectile is no longer able to be shot.
-    /// </summary>
-    [DataField]
-    public bool ProjectileSpent;
-
-    /// <summary>
-    ///     When a projectile has this threshold set, it will continue to penetrate entities until the damage dealt reaches this threshold.
-    /// </summary>
-    [DataField]
-    public FixedPoint2 PenetrationThreshold = FixedPoint2.Zero; // TODO: Predict penetration???
-
-    /// <summary>
-    ///     If set, the projectile will not penetrate objects that lack the ability to take these damage types.
-    /// </summary>
-    [DataField]
-    public List<string>? PenetrationDamageTypeRequirement;
-
-    /// <summary>
-    ///     Tracks the amount of damage dealt for penetration purposes.
-    /// </summary>
-    [DataField]
-    public FixedPoint2 PenetrationAmount = FixedPoint2.Zero;
-
-    /// <summary>
-    /// Frontier: Chance for a blind effect bonus to occur (1 = 100%).
-    /// </summary>
-    [DataField]
-    public float RandomBlindChance { get; set; } = 0;
 }

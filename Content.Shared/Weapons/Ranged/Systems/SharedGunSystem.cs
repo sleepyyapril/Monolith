@@ -10,7 +10,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
 using Content.Shared.Buckle.Components; // Frontier: firing when buckled in space
 using Content.Shared.Camera;
-using Content.Shared.Clumsy;
 using Content.Shared.CombatMode;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
@@ -85,12 +84,12 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private   readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private   readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private   readonly StaminaSystem _stamina = default!;
     [Dependency] private   readonly SharedStunSystem _stun = default!;
     [Dependency] private   readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private   readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private   readonly IConfigurationManager _config = default!;
-    [Dependency] private   readonly SharedMapSystem _map = default!;
 
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
@@ -269,7 +268,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     private List<EntityUid>? AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, List<int>? predictedProjectiles = null, ICommonSession? userSession = null)
     {
         if (TryComp<AutoShootGunComponent>(gunUid, out var auto) && !auto.CanFire) // Frontier
-            return null; // Frontier
+            return; // Frontier
 
         if (gun.FireRateModified <= 0f ||
             !_actionBlockerSystem.CanAttack(user))
@@ -469,43 +468,43 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         userImpulse = true;
 
-        // // Try a clumsy roll
-        // // TODO: Who put this here
-        // if (TryComp<ClumsyComponent>(user, out var clumsy) && gun.ClumsyProof == false)
-        // {
-        //     for (var i = 0; i < ammo.Count; i++)
-        //     {
-        //         if (_interaction.cl(user.Value, GunClumsyChance, clumsy))
-        //         {
-        //             // Wound them
-        //             Damageable.TryChangeDamage(user, clumsy.ClumsyDamage, origin: user);
-        //             _stun.TryParalyze(user.Value, TimeSpan.FromSeconds(3f), true);
-        //
-        //             // Apply salt to the wound ("Honk!")
-        //             Audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/bang.ogg"), gunUid);
-        //             Audio.PlayPvs(clumsy.ClumsySound, gunUid);
-        //
-        //             PopupSystem.PopupEntity(Loc.GetString("gun-clumsy"), user.Value);
-        //             userImpulse = false;
-        //             return null;
-        //         }
-        //     }
-        // }
+        // Try a clumsy roll
+        // TODO: Who put this here
+        if (TryComp<ClumsyComponent>(user, out var clumsy) && gun.ClumsyProof == false)
+        {
+            for (var i = 0; i < ammo.Count; i++)
+            {
+                if (_interaction.TryRollClumsy(user.Value, GunClumsyChance, clumsy))
+                {
+                    // Wound them
+                    Damageable.TryChangeDamage(user, clumsy.ClumsyDamage, origin: user);
+                    _stun.TryParalyze(user.Value, TimeSpan.FromSeconds(3f), true);
 
-        var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates);
-        var toMap = TransformSystem.ToMapCoordinates(toCoordinates);
-        var mapDirection = toMap.Position - fromMap.Position;
+                    // Apply salt to the wound ("Honk!")
+                    Audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/bang.ogg"), gunUid);
+                    Audio.PlayPvs(clumsy.ClumsySound, gunUid);
+
+                    PopupSystem.PopupEntity(Loc.GetString("gun-clumsy"), user.Value);
+                    userImpulse = false;
+                    return null;
+                }
+            }
+        }
+
+        var fromMap = fromCoordinates.ToMap(EntityManager, TransformSystem);
+        var toMap = toCoordinates.ToMapPos(EntityManager, TransformSystem);
+        var mapDirection = toMap - fromMap.Position;
         var mapAngle = mapDirection.ToAngle();
         var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out var grid)
-            ? TransformSystem.WithEntityId(fromCoordinates, gridUid)
-            : new EntityCoordinates(_map.GetMap(fromMap.MapId), fromMap.Position);
+            ? fromCoordinates.WithEntityId(gridUid, EntityManager)
+            : new EntityCoordinates(MapManager.GetMapEntityId(fromMap.MapId), fromMap.Position);
 
         // Update shot based on the recoil
-        var target = fromMap.Position + angle.ToVec() * mapDirection.Length();
-        mapDirection = target - fromMap.Position;
+        toMap = fromMap.Position + angle.ToVec() * mapDirection.Length();
+        mapDirection = toMap - fromMap.Position;
         var gunVelocity = Physics.GetMapLinearVelocity(fromEnt);
 
         // I must be high because this was getting tripped even when true.
