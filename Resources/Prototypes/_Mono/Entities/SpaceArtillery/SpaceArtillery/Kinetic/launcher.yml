@@ -140,8 +140,6 @@
   - type: Gun
     fireRate: 2.5
     projectileSpeed: 240
-    burstCooldown: 0.5
-    burstFireRate: 10
     shotsPerBurst: 2
     selectedMode: Burst
     availableModes: Burst
@@ -254,8 +252,6 @@
     projectileSpeed: 315
     fireRate: 0.2
     burstCooldown: 10
-    burstFireRate: 2
-    shotsPerBurst: 2
     selectedMode: Burst
     availableModes: Burst
     soundGunshot:

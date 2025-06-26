@@ -71,8 +71,6 @@
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
   - type: Gun
     fireRate: 3.5
-    burstFireRate: 8
-    shotsPerBurst: 3
     burstCooldown: 0.4
     selectedMode: Burst
     availableModes:

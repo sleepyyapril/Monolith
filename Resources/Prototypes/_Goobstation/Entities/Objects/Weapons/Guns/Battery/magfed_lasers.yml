@@ -71,13 +71,11 @@
     shape:
     - 0,0,6,1
   - type: Gun
-    burstFireRate: 10
     shotsPerBurst: 3
-    burstCooldown: 0.8
     fireRate: 0.8
-    selectedMode: Burst
+    selectedMode: FullAuto
     availableModes:
-    - Burst
+    - FullAuto
     soundGunshot:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/laser_lmg.ogg
   - type: ItemSlots
