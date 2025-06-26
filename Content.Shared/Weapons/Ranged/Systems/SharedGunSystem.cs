@@ -57,8 +57,6 @@ using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Item;
 using Content.Shared.Mech.Components; // Delta-V: Felinids in duffelbags can't shoot.
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Stunnable;
@@ -136,6 +134,7 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     public override void Initialize()
     {
+        SubscribeAllEvent<RequestShootEvent>(OnShootRequest);
         SubscribeAllEvent<RequestStopShootEvent>(OnStopShootRequest);
         SubscribeLocalEvent<GunComponent, MeleeHitEvent>(OnGunMelee);
 
