@@ -27,6 +27,7 @@ using Robust.Shared.Threading;
 using System.Collections.Concurrent;
 using Robust.Shared.Timing;
 using Content.Shared._Mono;
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Projectiles;
 
@@ -45,6 +46,17 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedGunSystem _guns = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+
+    // Cache of projectiles waiting for collision checks
+    private readonly ConcurrentQueue<(EntityUid Uid, ProjectileComponent Component, EntityUid Target)> _pendingCollisionChecks = new();
+    private readonly HashSet<EntityUid> _processedProjectiles = new();
+    private const int MinProjectilesForParallel = 8;
+    private const int ProjectileBatchSize = 16;
+    private TimeSpan _lastBatchProcess;
+    private readonly TimeSpan _processingInterval = TimeSpan.FromMilliseconds(16); // ~60Hz
 
     public override void Initialize()
     {
@@ -73,6 +85,15 @@ public abstract partial class SharedProjectileSystem : EntitySystem
             return;
 
         ProjectileCollide((uid, component, args.OurBody), args.OtherEntity);
+    }
+
+    /// <summary>
+    /// Initialize the origin grid for phasing projectiles.
+    /// </summary>
+    private void OnProjectileGridPhaseStartup(EntityUid uid, ProjectileGridPhaseComponent component, ComponentStartup args)
+    {
+        var xform = Transform(uid);
+        component.SourceGrid = xform.GridUid;
     }
 
     public void ProjectileCollide(Entity<ProjectileComponent, PhysicsComponent> projectile, EntityUid target, bool predicted = false)
@@ -167,12 +188,6 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         }
     }
 
-    private void OnEmbedActivate(EntityUid uid, EmbeddableProjectileComponent component, ActivateInWorldEvent args)
-    {
-        var xform = Transform(uid);
-        component.SourceGrid = xform.GridUid;
-    }
-
     /// <summary>
     /// Ensures that a MetaDataComponent exists on projectiles for network serialization.
     /// </summary>
@@ -181,7 +196,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         // Check if the entity still exists before trying to add a component
         if (!EntityManager.EntityExists(uid))
             return;
-            
+
         EnsureComp<MetaDataComponent>(uid);
     }
 
@@ -534,8 +549,47 @@ public sealed class ImpactEffectEvent : EntityEventArgs
 [ByRefEvent]
 public record struct ProjectileReflectAttemptEvent(EntityUid ProjUid, ProjectileComponent Component, bool Cancelled);
 
+
+/// <summary>
+/// Raised when a projectile is about to collide with an entity, allowing systems to prevent the collision
+/// </summary>
+[ByRefEvent]
+public record struct ProjectileCollisionAttemptEvent(EntityUid Projectile, EntityUid Target)
+{
+    /// <summary>
+    /// Whether the collision should be cancelled
+    /// </summary>
+    public bool Cancelled = false;
+}
+
 /// <summary>
 /// Raised when a projectile hits an entity
 /// </summary>
 [ByRefEvent]
 public record struct ProjectileHitEvent(DamageSpecifier Damage, EntityUid Target, EntityUid? Shooter = null, bool Handled = false);
+
+// Parallel job implementation for processing projectile collisions
+public sealed class ProjectileCollisionJob : IParallelRobustJob
+{
+    public SharedProjectileSystem ParentSystem = default!;
+    public List<(EntityUid Uid, ProjectileComponent Component, EntityUid Target)> ProjectileChecks = default!;
+    public ConcurrentDictionary<EntityUid, bool> CollisionResults = default!;
+
+    // Process a reasonable number of projectiles in each thread
+    public int BatchSize => 16; // Hardcoded value instead of ProjectileBatchSize
+    public int MinimumBatchParallel => 2;
+
+    public void Execute(int index)
+    {
+        if (index >= ProjectileChecks.Count)
+            return;
+
+        var (uid, component, target) = ProjectileChecks[index];
+
+        // Check if shield prevents collision
+        bool cancelled = ParentSystem.CheckShieldCollision(uid, component, target);
+
+        // Store result
+        CollisionResults[uid] = cancelled;
+    }
+}
