@@ -1,3 +1,12 @@
+// SPDX-FileCopyrightText: 2022 Leon Friedrich
+// SPDX-FileCopyrightText: 2022 metalgearsloth
+// SPDX-FileCopyrightText: 2023 Kara
+// SPDX-FileCopyrightText: 2024 Aiden
+// SPDX-FileCopyrightText: 2024 DrSmugleaf
+// SPDX-FileCopyrightText: 2025 Ark
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Audio;

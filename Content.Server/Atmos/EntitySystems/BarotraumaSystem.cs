@@ -1,3 +1,22 @@
+// SPDX-FileCopyrightText: 2021 20kdc
+// SPDX-FileCopyrightText: 2021 DrSmugleaf
+// SPDX-FileCopyrightText: 2021 Kara D
+// SPDX-FileCopyrightText: 2021 ShadowCommander
+// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto
+// SPDX-FileCopyrightText: 2022 Acruid
+// SPDX-FileCopyrightText: 2022 Julian Giebel
+// SPDX-FileCopyrightText: 2022 mirrorcult
+// SPDX-FileCopyrightText: 2022 wrexbe
+// SPDX-FileCopyrightText: 2023 Leon Friedrich
+// SPDX-FileCopyrightText: 2023 Menshin
+// SPDX-FileCopyrightText: 2024 Nemanja
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 sleepyyapril
+// SPDX-FileCopyrightText: 2025 starch
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
