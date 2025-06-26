@@ -251,7 +251,6 @@
   - type: Gun
     projectileSpeed: 315
     fireRate: 0.2
-    burstCooldown: 10
     selectedMode: Burst
     availableModes: Burst
     soundGunshot:
