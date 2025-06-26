@@ -91,6 +91,7 @@
         Piercing: 14
     soundHit:
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+  - type: LagCompensation
   - type: TimedDespawn
     lifetime: 10
 
