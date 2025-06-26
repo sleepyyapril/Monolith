@@ -5,6 +5,7 @@
 // SPDX-FileCopyrightText: 2024 DrSmugleaf
 // SPDX-FileCopyrightText: 2024 LordCarve
 // SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 sleepyyapril
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
