@@ -1013,7 +1013,7 @@
   - type: Ammo
 
 - type: entity
-  name : laser bolt
+  name: laser bolt
   id: BulletEnergyTurretLaser
   parent: BulletEnergyTurretBase
   categories: [ HideSpawnMenu ]
