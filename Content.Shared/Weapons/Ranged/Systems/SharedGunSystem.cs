@@ -490,28 +490,28 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         userImpulse = true;
 
-        // Try a clumsy roll
-        // TODO: Who put this here
-        if (TryComp<ClumsyComponent>(user, out var clumsy) && gun.ClumsyProof == false)
-        {
-            for (var i = 0; i < ammo.Count; i++)
-            {
-                if (_interaction.TryRollClumsy(user.Value, GunClumsyChance, clumsy))
-                {
-                    // Wound them
-                    Damageable.TryChangeDamage(user, clumsy.ClumsyDamage, origin: user);
-                    _stun.TryParalyze(user.Value, TimeSpan.FromSeconds(3f), true);
-
-                    // Apply salt to the wound ("Honk!")
-                    Audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/bang.ogg"), gunUid);
-                    Audio.PlayPvs(clumsy.ClumsySound, gunUid);
-
-                    PopupSystem.PopupEntity(Loc.GetString("gun-clumsy"), user.Value);
-                    userImpulse = false;
-                    return null;
-                }
-            }
-        }
+        // // Try a clumsy roll
+        // // TODO: Who put this here
+        // if (TryComp<ClumsyComponent>(user, out var clumsy) && gun.ClumsyProof == false)
+        // {
+        //     for (var i = 0; i < ammo.Count; i++)
+        //     {
+        //         if (_interaction.TryRollClumsy(user.Value, GunClumsyChance, clumsy))
+        //         {
+        //             // Wound them
+        //             Damageable.TryChangeDamage(user, clumsy.ClumsyDamage, origin: user);
+        //             _stun.TryParalyze(user.Value, TimeSpan.FromSeconds(3f), true);
+        //
+        //             // Apply salt to the wound ("Honk!")
+        //             Audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/bang.ogg"), gunUid);
+        //             Audio.PlayPvs(clumsy.ClumsySound, gunUid);
+        //
+        //             PopupSystem.PopupEntity(Loc.GetString("gun-clumsy"), user.Value);
+        //             userImpulse = false;
+        //             return null;
+        //         }
+        //     }
+        // }
 
         var fromMap = fromCoordinates.ToMap(EntityManager, TransformSystem);
         var toMap = toCoordinates.ToMapPos(EntityManager, TransformSystem);
