@@ -313,12 +313,15 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         return new BankData(characterName, profit);
     }
 
-    public string ConvertBankDataToString(BankData bankData)
+    public string ConvertBankDataToString(BankData bankData, bool removeColor = false)
     {
         var absoluteProfit = Math.Abs(bankData.Profit);
         var adventureWebhookId = bankData.Profit > 0 ? _summaryProfitLocId : _summaryLossLocId;
         var profitInSpesos = BankSystemExtensions.ToSpesoString(absoluteProfit);
         var profitText = Loc.GetString(adventureWebhookId, ("amount", profitInSpesos));
+
+        if (removeColor)
+            profitText = FormattedMessage.RemoveMarkupPermissive(profitText);
 
         return $"{bankData.PlayerName} {profitText}";
     }
