@@ -689,6 +689,8 @@ namespace Content.Server.GameTicking
                     return;
 
                 // Create the manifest text in the same format as the round end summary
+                var profitData = new List<BankData>();
+
                 var manifestLines = new List<string>();
                 var profitLines = new List<string>();
 
@@ -714,16 +716,25 @@ namespace Content.Server.GameTicking
                     // Try to get profit information for this player
                     if (player.PlayerGuid != null && !string.IsNullOrEmpty(player.PlayerICName))
                     {
-                        var profitInfo = adventureSystem.GetPlayerProfitInfo(player.PlayerGuid.Value, player.PlayerICName);
-                        if (profitInfo != null)
+                        var profitInfo = adventureSystem.GetBankDataInfo(player.PlayerGuid.Value, player.PlayerICName);
+
+                        if (profitInfo == null || profitData.Contains(profitInfo.Value))
                         {
-                            // Only add profit info if we haven't seen this exact entry before
-                            if (seenProfitEntries.Add(profitInfo))
-                            {
-                                profitLines.Add(profitInfo);
-                            }
+                            continue;
                         }
+
+                        profitData.Add(profitInfo.Value);
                     }
+                }
+
+                var orderedData = profitData.OrderByDescending(p => p.Profit);
+
+                foreach (var data in orderedData)
+                {
+                    var dataString = adventureSystem.ConvertBankDataToString(data);
+
+                    if (seenProfitEntries.Add(dataString))
+                        profitLines.Add($"- {dataString}");
                 }
 
                 // Prepare base embed content

@@ -287,7 +287,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
     /// <summary>
     /// Mono: Gets profit information for a player by their character name.
     /// </summary>
-    public string? GetPlayerProfitInfo(NetUserId userId, string characterName)
+    public BankData? GetBankDataInfo(NetUserId userId, string characterName)
     {
         // Find the player by character name and user ID
         var playerEntry = _players.FirstOrDefault(kvp =>
@@ -310,20 +310,17 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
             return null;
 
         var profit = endBalance - playerInfo.StartBalance;
-        string summaryText;
-        if (profit < 0)
-        {
-            summaryText = Loc.GetString("adventure-list-loss", ("amount", BankSystemExtensions.ToSpesoString(-profit)));
-        }
-        else
-        {
-            summaryText = Loc.GetString("adventure-list-profit", ("amount", BankSystemExtensions.ToSpesoString(profit)));
-        }
+        return new BankData(characterName, profit);
+    }
 
-        // Strip color markup tags for Discord
-        summaryText = FormattedMessage.RemoveMarkupPermissive(summaryText);
+    public string ConvertBankDataToString(BankData bankData)
+    {
+        var absoluteProfit = Math.Abs(bankData.Profit);
+        var adventureWebhookId = bankData.Profit > 0 ? _summaryProfitLocId : _summaryLossLocId;
+        var profitInSpesos = BankSystemExtensions.ToSpesoString(absoluteProfit);
+        var profitText = Loc.GetString(adventureWebhookId, ("amount", profitInSpesos));
 
-        return $"- {playerInfo.Name} {summaryText}";
+        return $"{bankData.PlayerName} {profitText}";
     }
 
     protected override void Started(EntityUid uid, NFAdventureRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -468,18 +465,6 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         }
     }
 
-    internal struct BankData
-    {
-        public string PlayerName { get; set; }
-        public int Profit { get; set; }
-
-        public BankData(string playerName, int profit)
-        {
-            PlayerName = playerName;
-            Profit = profit;
-        }
-    }
-
     // https://discord.com/developers/docs/resources/channel#message-object-message-structure
     private struct WebhookPayload
     {
@@ -529,5 +514,17 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         public EmbedFooter()
         {
         }
+    }
+}
+
+public record struct BankData
+{
+    public string PlayerName { get; set; }
+    public int Profit { get; set; }
+
+    public BankData(string playerName, int profit)
+    {
+        PlayerName = playerName;
+        Profit = profit;
     }
 }
