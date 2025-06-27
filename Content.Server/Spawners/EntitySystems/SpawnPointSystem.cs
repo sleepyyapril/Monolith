@@ -105,13 +105,7 @@ public sealed class SpawnPointSystem : EntitySystem
             }
             else
             {
-                // the shit i gotta do to get a stations name, man. fuck this hell game
-                if (TryComp<StationDataComponent>(args.Station, out var stationData)
-                    && stationData.StationConfig != null
-                    && _prototypeManager.TryIndex(stationData.StationConfig.StationPrototype, out var stationProto))
-                    Log.Error($"No spawn points found for station {stationProto.Name}");
-                else
-                    Log.Error($"No spawn points were available for station {args.Station}!");
+                Log.Info($"No spawn points were available for station {args.Station}!");
                 return;
             }
         }
