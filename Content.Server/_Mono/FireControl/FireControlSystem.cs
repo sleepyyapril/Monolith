@@ -17,6 +17,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Interaction;
 using Content.Shared._Mono.ShipGuns;
 using Content.Shared.Examine;
+using Content.Shared.UserInterface;
 
 namespace Content.Server._Mono.FireControl;
 

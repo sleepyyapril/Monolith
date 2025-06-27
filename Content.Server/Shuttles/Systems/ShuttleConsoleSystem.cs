@@ -26,6 +26,8 @@ using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Construction.Components; // Frontier
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Components;
+using Content.Shared._Mono.FireControl;
+using Content.Shared._Mono.Ships.Components;
 using Content.Shared.Verbs;
 
 namespace Content.Server.Shuttles.Systems;
@@ -167,6 +169,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     {
         if (!TryPilot(args.User, uid))
             args.Cancel();
+
+        var shuttle = _transform.GetParentUid(uid);
+
+        // Crewed shuttles should not allow people to have both gunnery and shuttle consoles open.
+        if (_ui.IsUiOpen(args.User, FireControlConsoleUiKey.Key) && HasComp<CrewedShuttleComponent>(shuttle))
+        {
+            args.Cancel();
+        }
     }
 
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component,

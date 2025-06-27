@@ -49,6 +49,7 @@ using Robust.Server.Player;
 using Robust.Shared.Player;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Mono.Ships.Components;
 using Robust.Shared.Log;
 using Robust.Shared.Timing;
 
@@ -134,8 +135,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var name = vessel.Name;
+
         if (vessel.Price <= 0)
             return;
+
+        if (!vessel.RequireCrew && vessel.Classes.Contains(VesselClass.Capital))
+            vessel.RequireCrew = true;
 
         if (_station.GetOwningStation(shipyardConsoleUid) is not { Valid: true } station)
         {
@@ -345,6 +350,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         // Mono
         Get<ShipyardDirectionSystem>().SendShipDirectionMessage(player, shuttleUid);
+
+        if (vessel.RequireCrew)
+            EnsureComp<CrewedShuttleComponent>(shuttleUid);
 
         PlayConfirmSound(player, shipyardConsoleUid, component);
         if (voucherUsed)

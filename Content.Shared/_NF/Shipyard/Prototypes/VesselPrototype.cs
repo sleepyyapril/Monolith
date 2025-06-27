@@ -35,6 +35,13 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     public int Price;
 
     /// <summary>
+    ///     Whether the ship should be crewed or not
+    ///     This is automatically set to true when the ship is a Capital-class ship.
+    /// </summary>
+    [DataField]
+    public bool RequireCrew;
+
+    /// <summary>
     ///     The size of the vessel. (e.g. Small, Medium, Large etc.)
     /// </summary>
     [DataField(required: true)]

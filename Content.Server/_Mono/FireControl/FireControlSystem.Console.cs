@@ -1,10 +1,14 @@
 // Copyright Rane (elijahrane@gmail.com) 2025
 // All rights reserved. Relicensed under AGPL with permission
 
+using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Mono.FireControl;
+using Content.Shared._Mono.Ships.Components;
 using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
+using Content.Shared.Shuttles.Components;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 
 namespace Content.Server._Mono.FireControl;
@@ -13,6 +17,8 @@ public sealed partial class FireControlSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoleSystem = default!;
+    [Dependency] private readonly TransformSystem _transformSystem = default!;
+
     private void InitializeConsole()
     {
         SubscribeLocalEvent<FireControlConsoleComponent, PowerChangedEvent>(OnPowerChanged);
@@ -20,6 +26,7 @@ public sealed partial class FireControlSystem : EntitySystem
         SubscribeLocalEvent<FireControlConsoleComponent, FireControlConsoleRefreshServerMessage>(OnRefreshServer);
         SubscribeLocalEvent<FireControlConsoleComponent, FireControlConsoleFireMessage>(OnFire);
         SubscribeLocalEvent<FireControlConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
+        SubscribeLocalEvent<FireControlConsoleComponent, ActivatableUIOpenAttemptEvent>(OnUIOpenAttempt);
     }
 
     private void OnPowerChanged(EntityUid uid, FireControlConsoleComponent component, PowerChangedEvent args)
@@ -92,6 +99,17 @@ public sealed partial class FireControlSystem : EntitySystem
     public void OnUIOpened(EntityUid uid, FireControlConsoleComponent component, BoundUIOpenedEvent args)
     {
         UpdateUi(uid, component);
+    }
+
+    private void OnUIOpenAttempt(Entity<FireControlConsoleComponent> ent, ref ActivatableUIOpenAttemptEvent args)
+    {
+        var shuttle = _transformSystem.GetParentUid(ent);
+
+        // Crewed shuttles should not allow people to have both gunnery and shuttle consoles open.
+        if (_ui.IsUiOpen(args.User, ShuttleConsoleUiKey.Key) && HasComp<CrewedShuttleComponent>(shuttle))
+        {
+            args.Cancel();
+        }
     }
 
     private void UnregisterConsole(EntityUid console, FireControlConsoleComponent? component = null)
