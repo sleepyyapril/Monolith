@@ -17,9 +17,12 @@ namespace Content.Shared.Theta.ShipEvent.CircularShield;
 public sealed partial class CircularShieldTempSpeedChangeEffect : CircularShieldEffect
 {
     private IEntityManager _entMan = default!;
+    private ILogManager _logManager = default!;
     private SharedTransformSystem _formSys = default!;
     private SharedPhysicsSystem _physSys = default!;
     private SharedCircularShieldSystem _shieldSys = default!;
+
+    private ISawmill _sawmill = default!;
 
     [DataField(required: true)]
     public float SpeedModifier;
@@ -46,10 +49,13 @@ public sealed partial class CircularShieldTempSpeedChangeEffect : CircularShield
     public override void OnShieldInit(Entity<CircularShieldComponent> shield)
     {
         _entMan = IoCManager.Resolve<IEntityManager>();
+        _logManager = IoCManager.Resolve<ILogManager>();
 
         _formSys = _entMan.System<SharedTransformSystem>();
         _physSys = _entMan.System<SharedPhysicsSystem>();
         _shieldSys = _entMan.System<SharedCircularShieldSystem>();
+
+        _sawmill = _logManager.GetSawmill("circularshield");
 
         ShieldEntity = shield.Owner;
         ShieldComponent = shield.Comp;
@@ -166,7 +172,7 @@ public sealed partial class CircularShieldTempSpeedChangeEffect : CircularShield
         catch (Exception e)
         {
             // If any error occurs during grid checking, we want it to log for later.
-            Log.Warning(e.ToString());
+            _sawmill.Warning(e.ToString());
         }
     }
 
