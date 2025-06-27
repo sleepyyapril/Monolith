@@ -17,8 +17,10 @@
 
 using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Spawners.EntitySystems;
@@ -29,6 +31,7 @@ public sealed class SpawnPointSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -102,7 +105,13 @@ public sealed class SpawnPointSystem : EntitySystem
             }
             else
             {
-                Log.Error($"No spawn points were available for station {args.Station}!");
+                // the shit i gotta do to get a stations name, man. fuck this hell game
+                if (TryComp<StationDataComponent>(args.Station, out var stationData)
+                    && stationData.StationConfig != null
+                    && _prototypeManager.TryIndex(stationData.StationConfig.StationPrototype, out var stationProto))
+                    Log.Error($"No spawn points found for station {stationProto.Name}");
+                else
+                    Log.Error($"No spawn points were available for station {args.Station}!");
                 return;
             }
         }
