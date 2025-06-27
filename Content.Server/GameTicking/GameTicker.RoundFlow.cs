@@ -781,7 +781,7 @@ namespace Content.Server.GameTicking
 
                 foreach (var data in orderedData)
                 {
-                    var dataString = adventureSystem.ConvertBankDataToString(data);
+                    var dataString = adventureSystem.ConvertBankDataToString(data, true);
 
                     if (seenProfitEntries.Add(dataString))
                         profitLines.Add($"- {dataString}");
