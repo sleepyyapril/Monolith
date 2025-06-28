@@ -4874,3 +4874,78 @@ Entries:
   id: 581
   time: '2025-06-26T06:35:45.0000000+00:00'
   url: https://github.com/Monolith-Station/Monolith/pull/971
+- author: Ark
+  changes:
+    - type: Tweak
+      message: AI cores now have to be anchored to interact with anything.
+  id: 582
+  time: '2025-06-26T10:25:32.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/974
+- author: sleepyyapril
+  changes:
+    - type: Tweak
+      message: >-
+        Pressing Scan will no longer force you to press the FTL button twice to
+        get your FTL preview back.
+  id: 583
+  time: '2025-06-26T10:46:37.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/973
+- author: plethorian
+  changes:
+    - type: Fix
+      message: added missing reagent grinder to the Spessbite
+  id: 584
+  time: '2025-06-26T22:54:39.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/979
+- author: KM-Catman
+  changes:
+    - type: Tweak
+      message: Dram now costs 35250 and comes with a Uranium Generator.
+  id: 585
+  time: '2025-06-26T22:56:24.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/981
+- author: Ark
+  changes:
+    - type: Fix
+      message: Spawns might be fixed, did not test thoroughly.
+  id: 586
+  time: '2025-06-27T00:45:29.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/984
+- author: sleepyyapril
+  changes:
+    - type: Tweak
+      message: Sorted your round end summary.
+  id: 587
+  time: '2025-06-27T05:50:03.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/989
+- author: sleepyyapril
+  changes:
+    - type: Tweak
+      message: Moved some items from backpack to the Colonel's storage locker.
+    - type: Tweak
+      message: Re-added big range maxcaps
+    - type: Fix
+      message: Colonel ship voucher is now properly given to the Colonel.
+  id: 588
+  time: '2025-06-27T11:29:09.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/996
+- author: sleepyyapril
+  changes:
+    - type: Tweak
+      message: The RPG's projectile speed was lowered slightly.
+    - type: Tweak
+      message: >-
+        EMP RPGs have a tripled range of effect and more power drain, in
+        exchange for slightly less effect duration.
+  id: 589
+  time: '2025-06-28T02:23:42.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/994
+- author: sleepyyapril
+  changes:
+    - type: Tweak
+      message: Most rifles were buffed. No, not the Annie or the WSPR.
+    - type: Tweak
+      message: The Vulcan can hit the broad-side of a barn again.
+  id: 590
+  time: '2025-06-28T02:25:54.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/995
