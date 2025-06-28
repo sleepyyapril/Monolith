@@ -173,7 +173,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         var shuttle = _transform.GetParentUid(uid);
 
         // Crewed shuttles should not allow people to have both gunnery and shuttle consoles open.
-        if (_ui.IsUiOpen(args.User, FireControlConsoleUiKey.Key) && HasComp<CrewedShuttleComponent>(shuttle))
+        if (_ui.IsUiOpen(uid, FireControlConsoleUiKey.Key, actor: args.User) && HasComp<CrewedShuttleComponent>(shuttle))
         {
             args.Cancel();
         }
