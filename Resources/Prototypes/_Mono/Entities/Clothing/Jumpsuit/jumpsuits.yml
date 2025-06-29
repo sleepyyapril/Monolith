@@ -95,3 +95,18 @@
   - type: SuitSensor
     randomMode: false
     mode: SensorOff
+
+# Trauma Armed Forces
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTAF
+  name: trauma armed forces jumpsuit
+  description: Standard fatigues of the Trauma Armed Forces.
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Uniforms/Jumpsuit/trauma.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/Uniforms/Jumpsuit/trauma.rsi
+  - type: SuitSensor
+    randomMode: false
+    mode: SensorVitals
