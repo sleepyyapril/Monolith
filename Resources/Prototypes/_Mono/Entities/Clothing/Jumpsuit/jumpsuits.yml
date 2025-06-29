@@ -99,7 +99,7 @@
 # Trauma Armed Forces
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformTAF
+  id: ClothingUniformJumpsuitTAF
   name: trauma armed forces jumpsuit
   description: Standard fatigues of the Trauma Armed Forces.
   components:
