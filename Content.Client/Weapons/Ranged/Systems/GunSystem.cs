@@ -63,6 +63,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private readonly GunSystem _guns = default!;
 
     [ValidatePrototypeId<EntityPrototype>]
     public const string HitscanProto = "HitscanEffect";
@@ -122,7 +123,7 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         var gunUid = GetEntity(args.Uid);
 
-        CreateEffect(gunUid, args, gunUid, _player.LocalEntity);
+        CreateEffect(gunUid, args, _player.LocalEntity, _player.LocalEntity);
     }
 
     private void OnHitscan(HitscanEvent ev)
@@ -290,7 +291,7 @@ public sealed partial class GunSystem : SharedGunSystem
         if (tracked != null)
         {
             var track = EnsureComp<TrackUserComponent>(ent);
-            track.User = tracked;
+            track.User = player ?? tracked;
             track.Offset = Vector2.UnitX / 2f;
         }
 

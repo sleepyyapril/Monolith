@@ -226,7 +226,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         // Check if the entity still exists before trying to add a component
         if (!EntityManager.EntityExists(uid))
             return;
-            
+
         EnsureComp<MetaDataComponent>(uid);
     }
 
