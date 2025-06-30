@@ -55,8 +55,8 @@
           tags:
             - Cartridge7.62x51mmFMJ
   - type: SpeedModifiedOnWield # Mono
-    walkModifier: 0.8
-    sprintModifier: 0.6
+    walkModifier: 1
+    sprintModifier: 1
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
