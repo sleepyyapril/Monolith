@@ -17,6 +17,7 @@
 // SPDX-FileCopyrightText: 2025 LukeZurg22
 // SPDX-FileCopyrightText: 2025 Redrover1760
 // SPDX-FileCopyrightText: 2025 Whatstone
+// SPDX-FileCopyrightText: 2025 sleepyyapril
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
