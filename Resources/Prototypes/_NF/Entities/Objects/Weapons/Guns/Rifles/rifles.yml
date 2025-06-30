@@ -1,14 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Dvir
-# SPDX-FileCopyrightText: 2024 ErhardSteinhauer
-# SPDX-FileCopyrightText: 2025 Ark
-# SPDX-FileCopyrightText: 2025 Jakumba
-# SPDX-FileCopyrightText: 2025 LukeZurg22
-# SPDX-FileCopyrightText: 2025 Whatstone
-# SPDX-FileCopyrightText: 2025 core-mene
-# SPDX-FileCopyrightText: 2025 sleepyyapril
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 # Upstream
 - type: entity
   name: Lecter (5.56x45mm)
@@ -66,10 +55,10 @@
 
 # Frontier
 - type: entity
-  name: Gestio (7.62x51mm)
+  name: Gestio (7.62x39mm)
   parent: [ BaseWeaponRifle, BaseC1Contraband ]
   id: WeaponRifleGestio
-  description: An old burst-fire rifle made by Silver Industries that never left trials. Accepts low capacity 7.62x51mm magazines.
+  description: An old burst-fire rifle made by Silver Industries that never left trials. Accepts low capacity 7.62x39mm magazines.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
@@ -81,8 +70,8 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
   - type: Gun
-    fireRate: 3
-    burstFireRate: 6
+    fireRate: 4
+    burstFireRate: 8
     shotsPerBurst: 3
     burstCooldown: 0.4
     selectedMode: Burst
@@ -97,22 +86,22 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine7.62x51mmLowCapacityFMJ
+        startingItem: Magazine7.62x39mmLowCapacityFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine7.62x51mmLowCapacityFMJ
-            - Magazine7.62x51mmFMJ
+            - Magazine7.62x39mmLowCapacityFMJ
+            - Magazine7.62x39mmFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge7.62x51mmFMJ
+        startingItem: Cartridge7.62x39mmFMJ
         priority: 1
         whitelist:
           tags:
-            - Cartridge7.62x51mmFMJ
+            - Cartridge7.62x39mmFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
