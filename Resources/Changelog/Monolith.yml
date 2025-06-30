@@ -4929,3 +4929,171 @@ Entries:
   id: 588
   time: '2025-06-27T11:29:09.0000000+00:00'
   url: https://github.com/Monolith-Station/Monolith/pull/996
+- author: sleepyyapril
+  changes:
+    - type: Tweak
+      message: The RPG's projectile speed was lowered slightly.
+    - type: Tweak
+      message: >-
+        EMP RPGs have a tripled range of effect and more power drain, in
+        exchange for slightly less effect duration.
+  id: 589
+  time: '2025-06-28T02:23:42.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/994
+- author: sleepyyapril
+  changes:
+    - type: Tweak
+      message: Most rifles were buffed. No, not the Annie or the WSPR.
+    - type: Tweak
+      message: The Vulcan can hit the broad-side of a barn again.
+  id: 590
+  time: '2025-06-28T02:25:54.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/995
+- author: Mowmow
+  changes:
+    - type: Add
+      message: Adds the BBI Leaf, a new botanical ship, to the civilian shipyard.
+  id: 591
+  time: '2025-06-28T09:04:37.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/929
+- author: bluebrouny
+  changes:
+    - type: Add
+      message: The Ruby science ship!
+  id: 592
+  time: '2025-06-28T09:06:45.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/920
+- author: Redrover1760
+  changes:
+    - type: Add
+      message: Wallets can be used on the ground to vacuum nearby money
+    - type: Fix
+      message: Trash bags now start with magnet toggled off
+  id: 593
+  time: '2025-06-28T18:47:08.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/961
+- author: mikusssssss
+  changes:
+    - type: Add
+      message: >-
+        Added a cube of all the species! We at Nanotrasen offer you the ability
+        to make friends with technology! (CONSCIOUSNESS NOT INCLUDED) Find them
+        at your nearest BioFabricator!
+  id: 594
+  time: '2025-06-28T22:54:23.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/919
+- author: starch70
+  changes:
+    - type: Add
+      message: Added MR-8B LWMMG.
+    - type: Add
+      message: Added MR-8C and MR-8B to TSFMC uplink.
+    - type: Add
+      message: Added Scorpion to Rogue shipyard.
+    - type: Tweak
+      message: LMGs now have a slowdown when wielded.
+    - type: Tweak
+      message: MR-8C no longer C3 contra. Now its C2.
+    - type: Tweak
+      message: Serpent is now access restricted to Colonel.
+    - type: Fix
+      message: Fixed Vulture using RSIC IFF prefix instead of RG.
+  id: 595
+  time: '2025-06-29T02:38:02.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1007
+- author: Ark
+  changes:
+    - type: Add
+      message: Ported over radio sound effects from Crescent. Lethal!
+  id: 596
+  time: '2025-06-29T02:43:51.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1008
+- author: Ark
+  changes:
+    - type: Add
+      message: >-
+        Ships are now restricted to ID cards with deed access. You can still
+        grant guest access by allowing others to swipe your unlocked shuttle
+        console, without providing them a copy of your deed.
+  id: 597
+  time: '2025-06-29T02:46:42.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1006
+- author: Redrover1760
+  changes:
+    - type: Tweak
+      message: ruby price adjusted for appraisal
+    - type: Fix
+      message: ghost spawn on ruby removed
+  id: 598
+  time: '2025-06-29T02:47:32.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1005
+- author: BlueHNT
+  changes:
+    - type: Fix
+      message: Fixed decaf and syndicatetea recipes not being present
+    - type: Tweak
+      message: Updates YorkshireTea location and price
+    - type: Tweak
+      message: Updates SyndieTea price
+    - type: Fix
+      message: Removes liquid from teapot
+    - type: Add
+      message: Adds tea mugs to BaristaVend
+  id: 599
+  time: '2025-06-29T03:15:16.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/975
+- author: bluebrouny
+  changes:
+    - type: Add
+      message: Added McChicken and McChilly
+  id: 600
+  time: '2025-06-29T04:54:42.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/939
+- author: Redrover1760
+  changes:
+    - type: Fix
+      message: Trashbags actually toggleable now
+  id: 601
+  time: '2025-06-29T07:37:25.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1010
+- author: Ark
+  changes:
+    - type: Add
+      message: >-
+        There is now an option to disable radio chatter and I lowered the
+        volume.
+  id: 602
+  time: '2025-06-29T07:41:44.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1012
+- author: starch70
+  changes:
+    - type: Tweak
+      message: Buffed MR-8B firerate and movement speed.
+    - type: Tweak
+      message: Changed MR-8 sprites a bit. Mostly just color changing a bit.
+    - type: Fix
+      message: Fixed missing recipe for 8x65mm box magazines.
+  id: 603
+  time: '2025-06-29T10:09:10.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1013
+- author: ScyronX
+  changes:
+    - type: Tweak
+      message: Unanchored artillery can no longer be fired with a gunnery console!
+  id: 604
+  time: '2025-06-30T00:52:09.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1014
+- author: ScyronX
+  changes:
+    - type: Fix
+      message: Fixed secret door sprite
+  id: 605
+  time: '2025-06-30T00:59:45.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1011
+- author: Mr T
+  changes:
+    - type: Add
+      message: Gives Wallmount Substations a UI!
+  id: 606
+  time: '2025-06-30T01:03:42.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1017
