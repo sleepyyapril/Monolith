@@ -54,6 +54,9 @@
         whitelist:
           tags:
             - Cartridge7.62x51mmFMJ
+  - type: SpeedModifiedOnWield # Mono
+    walkModifier: 0.9
+    sprintModifier: 0.85
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
