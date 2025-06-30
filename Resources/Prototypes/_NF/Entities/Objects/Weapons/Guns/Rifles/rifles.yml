@@ -55,10 +55,10 @@
 
 # Frontier
 - type: entity
-  name: Gestio (7.62x39mm)
+  name: Gestio (7.62x51mm)
   parent: [ BaseWeaponRifle, BaseC1Contraband ]
   id: WeaponRifleGestio
-  description: An old burst-fire rifle made by Silver Industries that never left trials. Accepts low capacity 7.62x39mm magazines.
+  description: An old burst-fire rifle made by Silver Industries that never left trials. Accepts low capacity 7.62x51mm magazines.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
@@ -70,7 +70,7 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
   - type: Gun
-    fireRate: 3
+    fireRate: 2.5
     burstFireRate: 8
     shotsPerBurst: 3
     burstCooldown: 0.4
