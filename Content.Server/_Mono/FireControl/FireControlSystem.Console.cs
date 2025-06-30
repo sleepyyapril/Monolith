@@ -1,6 +1,7 @@
 // Copyright Rane (elijahrane@gmail.com) 2025
 // All rights reserved. Relicensed under AGPL with permission
 
+using Content.Server._Mono.Ships.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Mono.FireControl;
@@ -17,7 +18,8 @@ public sealed partial class FireControlSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoleSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!;
 
     private void InitializeConsole()
     {
@@ -26,7 +28,7 @@ public sealed partial class FireControlSystem : EntitySystem
         SubscribeLocalEvent<FireControlConsoleComponent, FireControlConsoleRefreshServerMessage>(OnRefreshServer);
         SubscribeLocalEvent<FireControlConsoleComponent, FireControlConsoleFireMessage>(OnFire);
         SubscribeLocalEvent<FireControlConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
-        SubscribeLocalEvent<FireControlConsoleComponent, ActivatableUIOpenAttemptEvent>(OnUIOpenAttempt);
+        SubscribeLocalEvent<FireControlConsoleComponent, ActivatableUIOpenAttemptEvent>(OnConsoleUIOpenAttempt);
     }
 
     private void OnPowerChanged(EntityUid uid, FireControlConsoleComponent component, PowerChangedEvent args)
@@ -101,15 +103,18 @@ public sealed partial class FireControlSystem : EntitySystem
         UpdateUi(uid, component);
     }
 
-    private void OnUIOpenAttempt(Entity<FireControlConsoleComponent> ent, ref ActivatableUIOpenAttemptEvent args)
+    private void OnConsoleUIOpenAttempt(
+        EntityUid uid,
+        FireControlConsoleComponent component,
+        ActivatableUIOpenAttemptEvent args)
     {
-        var shuttle = _transformSystem.GetParentUid(ent);
+        var shuttle = _transform.GetParentUid(uid);
+        var uiOpen = _crewedShuttle.AnyShuttleConsoleActiveByPlayer(shuttle, args.User);
+        var hasComp = HasComp<CrewedShuttleComponent>(shuttle);
 
         // Crewed shuttles should not allow people to have both gunnery and shuttle consoles open.
-        if (_ui.IsUiOpen(ent.Owner, ShuttleConsoleUiKey.Key) && HasComp<CrewedShuttleComponent>(shuttle))
-        {
+        if (uiOpen && hasComp)
             args.Cancel();
-        }
     }
 
     private void UnregisterConsole(EntityUid console, FireControlConsoleComponent? component = null)

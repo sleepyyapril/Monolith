@@ -1,3 +1,4 @@
+using Content.Server._Mono.Ships.Systems;
 using Content.Server._Mono.Shuttles.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
@@ -48,6 +49,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
+    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!;
+
+    private ISawmill _sawmill = default!;
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -60,6 +65,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         _metaQuery = GetEntityQuery<MetaDataComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+
+        _sawmill = _log.GetSawmill("shuttle-console");
 
         InitializeDeviceLinking(); // Initialize device linking functionality
 
@@ -164,19 +171,28 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         RemovePilot(args.Actor);
     }
 
-    private void OnConsoleUIOpenAttempt(EntityUid uid, ShuttleConsoleComponent component,
+    private void OnConsoleUIOpenAttempt(
+        EntityUid uid,
+        ShuttleConsoleComponent component,
         ActivatableUIOpenAttemptEvent args)
     {
-        if (!TryPilot(args.User, uid))
-            args.Cancel();
-
         var shuttle = _transform.GetParentUid(uid);
+        var uiOpen = _crewedShuttle.AnyGunneryConsoleActiveByPlayer(shuttle, args.User);
+        var hasComp = HasComp<CrewedShuttleComponent>(shuttle);
+
+        _sawmill.Info($"Entity: {args.User}");
+        _sawmill.Info($"UI Open: {uiOpen}");
+        _sawmill.Info($"Has Comp: {hasComp}");
 
         // Crewed shuttles should not allow people to have both gunnery and shuttle consoles open.
-        if (_ui.IsUiOpen(uid, FireControlConsoleUiKey.Key, actor: args.User) && HasComp<CrewedShuttleComponent>(shuttle))
+        if (uiOpen && hasComp)
         {
             args.Cancel();
+            return;
         }
+
+        if (!TryPilot(args.User, uid))
+            args.Cancel();
     }
 
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component,
