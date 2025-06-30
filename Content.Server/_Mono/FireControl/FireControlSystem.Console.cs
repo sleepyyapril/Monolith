@@ -6,6 +6,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Mono.FireControl;
 using Content.Shared._Mono.Ships.Components;
+using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -20,6 +21,7 @@ public sealed partial class FireControlSystem : EntitySystem
     [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoleSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private void InitializeConsole()
     {
@@ -114,7 +116,10 @@ public sealed partial class FireControlSystem : EntitySystem
 
         // Crewed shuttles should not allow people to have both gunnery and shuttle consoles open.
         if (uiOpen && hasComp)
+        {
             args.Cancel();
+            _popup.PopupClient(Loc.GetString("shuttle-console-crewed"), args.User);
+        }
     }
 
     private void UnregisterConsole(EntityUid console, FireControlConsoleComponent? component = null)

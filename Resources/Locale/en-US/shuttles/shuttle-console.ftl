@@ -11,6 +11,7 @@ shuttle-console-no-ship-id = This console isn't assigned to any ship.
 shuttle-console-no-id-card = No ID card present in PDA.
 shuttle-console-emergency-locked = This console is under emergency lockdown. Only TSFMC can unlock it.
 shuttle-console-emergency-unlocked = Emergency lockdown overridden. The console has been unlocked.
+shuttle-console-crewed = You may not have a Shuttle Console and a Gunnery Console open at the same time on a Capital ship. Find a crewmate?
 
 ## Shuttle Console Lock Verbs
 shuttle-console-verb-unlock = Unlock Console

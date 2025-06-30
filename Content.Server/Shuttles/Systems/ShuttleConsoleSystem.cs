@@ -180,14 +180,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         var uiOpen = _crewedShuttle.AnyGunneryConsoleActiveByPlayer(shuttle, args.User);
         var hasComp = HasComp<CrewedShuttleComponent>(shuttle);
 
-        _sawmill.Info($"Entity: {args.User}");
-        _sawmill.Info($"UI Open: {uiOpen}");
-        _sawmill.Info($"Has Comp: {hasComp}");
-
         // Crewed shuttles should not allow people to have both gunnery and shuttle consoles open.
         if (uiOpen && hasComp)
         {
             args.Cancel();
+            _popup.PopupClient(Loc.GetString("shuttle-console-crewed"), args.User);
             return;
         }
 
