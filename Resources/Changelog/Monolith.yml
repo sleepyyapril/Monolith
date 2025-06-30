@@ -5065,3 +5065,35 @@ Entries:
   id: 602
   time: '2025-06-29T07:41:44.0000000+00:00'
   url: https://github.com/Monolith-Station/Monolith/pull/1012
+- author: starch70
+  changes:
+    - type: Tweak
+      message: Buffed MR-8B firerate and movement speed.
+    - type: Tweak
+      message: Changed MR-8 sprites a bit. Mostly just color changing a bit.
+    - type: Fix
+      message: Fixed missing recipe for 8x65mm box magazines.
+  id: 603
+  time: '2025-06-29T10:09:10.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1013
+- author: ScyronX
+  changes:
+    - type: Tweak
+      message: Unanchored artillery can no longer be fired with a gunnery console!
+  id: 604
+  time: '2025-06-30T00:52:09.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1014
+- author: ScyronX
+  changes:
+    - type: Fix
+      message: Fixed secret door sprite
+  id: 605
+  time: '2025-06-30T00:59:45.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1011
+- author: Mr T
+  changes:
+    - type: Add
+      message: Gives Wallmount Substations a UI!
+  id: 606
+  time: '2025-06-30T01:03:42.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/1017
