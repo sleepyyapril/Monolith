@@ -19,7 +19,6 @@
   guidebookPage: Null
   class:
   - Pirate
-  - Capital
   engine:
   - AME
 
