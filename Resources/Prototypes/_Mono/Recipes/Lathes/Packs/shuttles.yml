@@ -3,7 +3,7 @@
   recipes:
   - ShieldControlComputerCircuitboard
   - GunneryControlComputerCircuitboard
-  - MachineShieldMS225Circuitboard
+#  - MachineShieldMS225Circuitboard
   - MachineDriveCTLA25Circuitboard
   - MachineDriveCTLA25sCircuitboard
   - MachineDriveCTLA50Circuitboard

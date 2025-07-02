@@ -9,7 +9,7 @@
   cost: 20000
   recipeUnlocks:
   - ShieldControlComputerCircuitboard
-  - MachineShieldMS225Circuitboard
+#  - MachineShieldMS225Circuitboard
   - GunneryControlComputerCircuitboard
   - MachineGCSLowCircuitboard
   - MachineGCSMediumCircuitboard

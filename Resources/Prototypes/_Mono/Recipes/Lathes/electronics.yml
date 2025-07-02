@@ -8,10 +8,10 @@
   id: GunneryControlComputerCircuitboard
   result: GunneryControlComputerCircuitboard
 
-- type: latheRecipe
-  parent: BaseGoldCircuitboardRecipe
-  id: MachineShieldMS225Circuitboard
-  result: MachineShieldMS225Circuitboard
+# - type: latheRecipe
+#   parent: BaseGoldCircuitboardRecipe
+#   id: MachineShieldMS225Circuitboard
+#   result: MachineShieldMS225Circuitboard
 
 - type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
